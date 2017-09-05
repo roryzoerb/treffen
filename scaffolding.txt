@@ -1,0 +1,35 @@
+C:\Users\roryz\app\treffen
+├── /build
+|  ├── build.js
+|  ├── check-versions.js
+|  ├── dev-client.js
+|  ├── dev-server.js
+|  ├── utils.js
+|  ├── vue-loader.conf.js
+|  ├── webpack.base.conf.js
+|  ├── webpack.dev.conf.js
+|  └── webpack.prod.conf.js
+├── /config
+|  ├── dev.env.js
+|  ├── index.js
+|  └── prod.env.js
+├── index.html
+├── package.json
+├── README.md
+├── /src
+|  ├── App.vue
+|  ├── /assets
+|  |  └── logo.png
+|  ├── /components
+|  |  └── Hello.vue
+|  ├── main.js
+|  ├── /router
+|  |  └── index.js
+|  └── /stylus
+|     └── main.styl
+├── /static
+|  ├── favicon-32x32.png
+|  └── v.png
+└── yarn.lock
+
+directory: 2070 file: 12836 
