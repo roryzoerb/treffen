@@ -1,25 +1,25 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex xs12 sm10 md8 offset-sm1>
+    <v-layout row wrap v-for='meetup in meetups' v-bind:key='meetup.id' class='mb-2'>
+      <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
         <v-card class='info'>
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
                 <v-card-media
-                  src='http://kids.nationalgeographic.com/content/dam/kids/photos/articles/History/M-Z/YELLOWSTONE%20VALLEY.adapt.945.1.jpg'
+                  v-bind:src='meetup.imageUrl'
                   height='130px'>
                 </v-card-media>
               </v-flex xs7 sm8 md9>
               <v-flex>
                 <v-card-title primary-title>
                   <div>
-                    <h5 class='white--text mb-0'>My Meetup</h5>
-                    <div>July 17th, 2017</div>
+                    <h5 class='white--text mb-0'>{{ meetup.title }}</h5>
+                    <div>{{ meetup.date }}</div>
                   </div>
                 </v-card-title>
                 <div>
-                  <v-btn flat to='/meetups/1'>
+                  <v-btn flat v-bind:to="'/meetups/' + meetup.id">
                     <v-icon left>arrow_forward</v-icon>
                     View Meetup
                   </v-btn>
@@ -35,3 +35,14 @@
     </v-layout>
   </v-container>
 </template>
+
+<script>
+export default {
+  computed: {
+    meetups () {
+      return this.$store.getters.loadedMeetups
+    }
+  }
+}
+</script>
+

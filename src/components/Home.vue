@@ -33,6 +33,11 @@
 
 <script>
 export default {
+  computed: {
+    meetupsComputed () {
+      return this.$store.getters.featuredMeetups
+    }
+  },
   data () {
     return {
       meetups: [
