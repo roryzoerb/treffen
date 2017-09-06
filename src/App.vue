@@ -3,7 +3,6 @@
     <v-navigation-drawer temporary v-model="sideNav">
       <v-list>
         <v-list-tile 
-          router
           v-for='item in menuItems' 
           v-bind:key='item.title'
           v-bind:to='item.link'>
@@ -22,7 +21,6 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
         <v-btn 
-          router
           flat v-for='item in menuItems' 
           v-bind:key='item.title'
           v-bind:to='item.link'>
