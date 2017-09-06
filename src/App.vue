@@ -1,28 +1,38 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="sideNav">
+    <v-navigation-drawer temporary v-model="sideNav">
       <v-list>
-        <v-list-tile>
+        <v-list-tile 
+          router
+          v-for='item in menuItems' 
+          v-bind:key='item.title'
+          v-bind:to='item.link'>
           <v-list-tile-action>
-            <v-icon left>supervisor_account</v-icon>
+            <v-icon left>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>View Meetups</v-list-tile-content>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dark class='primary'>
       <v-toolbar-side-icon dark v-on:click.stop='sideNav=!sideNav' class='hidden-sm-and-up'></v-toolbar-side-icon>
-      <v-toolbar-title>Meetup</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to='/'tag='span' style='cursor: pointer'>Meetup</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
-        <v-btn flat>
-          <v-icon left>supervisor_account</v-icon>
-          View Meetups
+        <v-btn 
+          router
+          flat v-for='item in menuItems' 
+          v-bind:key='item.title'
+          v-bind:to='item.link'>
+          <v-icon left>{{ item.icon }}</v-icon>
+          {{ item.title }}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <main>
-
+      <router-view></router-view>
     </main>
   </v-app>
 </template>
@@ -31,8 +41,14 @@
   export default {
     data () {
       return {
-        sideNav: true,
-        mini: false
+        sideNav: false,
+        menuItems: [
+          { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
+          { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' },
+          { icon: 'person', title: 'Profile', link: '/profile' },
+          { icon: 'face', title: 'Sign Up', link: '/signup' },
+          { icon: 'lock_open', title: 'Sign In', link: '/signin' }
+        ]
       }
     }
   }
