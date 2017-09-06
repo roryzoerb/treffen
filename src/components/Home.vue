@@ -42,19 +42,22 @@ export default {
     return {
       meetups: [
         {
-          imageUrl: 'http://kids.nationalgeographic.com/content/dam/kids/photos/articles/History/M-Z/YELLOWSTONE%20VALLEY.adapt.945.1.jpg',
           id: 'alsdfjkklsdfkj',
-          title: 'Meetup in Yellowstone'
+          title: 'Meetup in Yellowstone',
+          description: '',
+          imageUrl: 'http://kids.nationalgeographic.com/content/dam/kids/photos/articles/History/M-Z/YELLOWSTONE%20VALLEY.adapt.945.1.jpg'
         },
         {
-          imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg',
           id: 'otueorwqperp',
-          title: 'Meetup in Telluride'
+          title: 'Meetup in Telluride',
+          description: '',
+          imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg'
         },
         {
-          imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg',
           id: 'czxcmvzxcmfdghv',
-          title: 'Meetup in Banf'
+          title: 'Meetup in Banf',
+          description: '',
+          imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg'
         }
       ]
     }

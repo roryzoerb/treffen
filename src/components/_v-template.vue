@@ -13,12 +13,22 @@
 </template>
 
 <script>
+// import Component from './Component.vue'
 export default {
-  data () {
-    return {
-      
-    }
-  }
+  // components: { my-component: Component },
+  props: [],
+  data () {return {}},
+  methods: {},
+  actions: {},
+  computed: {},
+  beforeCreate () {},
+  created () {},
+  beforeMount () {},
+  mounted () {},
+  beforeUpdate () {},
+  updated () {},
+  beforeDestroy () {},
+  destroyed () {}
 }
 </script>
 
