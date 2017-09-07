@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-layout row v-if='error'>
+      <v-flex xs12 sm6 offset-sm3>
+        <app-alert v-on:dismissed='onDismissed()' v-bind:text="error.message"></app-alert>
+      </v-flex>
+    </v-layout>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
@@ -36,7 +41,12 @@
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                    <v-btn type='submit'>Sign up</v-btn>
+                    <v-btn type='submit' v-bind:disabled='loading' v-bind:loading='loading'>
+                      <span slot='loader' class='custom-loader'>
+                        <v-icon light>cached</v-icon>
+                      </span>
+                      Sign up
+                    </v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -66,6 +76,13 @@ export default {
     },
     user () {
       return this.$store.getters.user
+    },
+    error () {
+      return this.$store.getters.error
+      // return true
+    },
+    loading () {
+      return this.$store.getters.loading
     }
   },
   watch: {
@@ -82,21 +99,10 @@ export default {
         email: this.email,
         password: this.password
       })
-      // console.log({
-      //   email: this.email,
-      //   password: this.password,
-      //   confirmPassword: this.confirmPassword
-      // })
+    },
+    onDismissed () {
+      this.$store.dispatch('clearError')
     }
-  },
-  actions: {},
-  beforeCreate () {},
-  created () {},
-  beforeMount () {},
-  mounted () {},
-  beforeUpdate () {},
-  updated () {},
-  beforeDestroy () {},
-  destroyed () {}
+  }
 }
 </script>
