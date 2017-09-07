@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form>
+              <form v-on:submit.prevent='onSignup()'>
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
@@ -36,7 +36,7 @@
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                    <v-btn type='submit'>Sign in</v-btn>
+                    <v-btn type='submit'>Sign up</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -63,16 +63,30 @@ export default {
   computed: {
     comparePasswords () {
       return this.password !== this.confirmPassword ? 'Passwords do not match' : true
+    },
+    user () {
+      return this.$store.getters.user
+    }
+  },
+  watch: {
+    user (value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push('/')
+      }
     }
   },
   methods: {
     onSignup () {
       // Vuex
-      console.log({
+      this.$store.dispatch('signUserUp', {
         email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword
+        password: this.password
       })
+      // console.log({
+      //   email: this.email,
+      //   password: this.password,
+      //   confirmPassword: this.confirmPassword
+      // })
     }
   },
   actions: {},
