@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
+import * as firebase from 'firebase'
 import router from './router'
 import { store } from './store'
 import DateFilter from './filters/date'
@@ -15,5 +16,14 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyABvaQwEe6pyXSrKYzMQCJVTL72sLRDmis',
+      authDomain: 'rrzsolutions-001.firebaseapp.com',
+      databaseURL: 'https://rrzsolutions-001.firebaseio.com',
+      projectId: 'rrzsolutions-001',
+      storageBucket: ''
+    })
+  }
 })
