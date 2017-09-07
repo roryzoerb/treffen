@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
         title: 'Meetup in Yellowstone',
         description: 'In YNP!!!',
         location: 'Yellowstone Naional Park, Montana USA',
-        date: '2017-07-17'
+        date: new Date()
       },
       {
         imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg',
@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
         title: 'Meetup in Telluride',
         description: 'In Colorado!!!',
         location: 'Telluride, Colorado USA',
-        date: '2017-07-19'
+        date: new Date()
       },
       {
         imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg',
@@ -28,7 +28,7 @@ export const store = new Vuex.Store({
         title: 'Meetup in Banf',
         description: 'In Banf!!!',
         location: 'Banf, Canada',
-        date: '2017-07-20'
+        date: new Date()
       }
     ],
     user: {
