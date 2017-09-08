@@ -13,6 +13,10 @@
           <v-card-text>
             <div class='info--text'>{{ meetup.date | dateTime }} - {{ meetup.location }}</div>
             <div>{{ meetup.description }}</div>
+            <div>Creator: {{ meetup.creator_id }}</div>
+            <div>Created: {{ meetup.created_date }}</div>
+            <div>Modifier: {{ meetup.modifier_id }}</div>
+            <div>Modified: {{ meetup.modified_date }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
