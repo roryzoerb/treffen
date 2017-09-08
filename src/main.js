@@ -28,7 +28,9 @@ new Vue({
       storageBucket: ''
     })
     firebase.auth().onAuthStateChanged((user) => {
-      this.$store.dispatch('autoSignIn', user)
+      if (user) {
+        this.$store.dispatch('autoSignIn', user)
+      }
     })
     this.$store.dispatch('loadMeetups')
   }
