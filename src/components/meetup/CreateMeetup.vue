@@ -32,13 +32,19 @@
           </v-layout>
           <v-layout>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
+              <v-btn raised class='primary' v-on:click='pickFile()'>Upload Image</v-btn>
+              <input type='file'
+                v-show='true'
+                ref='dlgFileInput'
+                accept='image/*'
+                @change='filePicked'>
+              <!-- <v-text-field
                 name='imageUrl'
                 label='Image URL'
                 id='image-url'
                 v-model='imageUrl'
                 required>
-              </v-text-field>
+              </v-text-field> -->
             </v-flex>
           </v-layout>
           <v-layout>
@@ -94,7 +100,8 @@ export default {
       location: '',
       imageUrl: '',
       date: new Date(),
-      time: new Date()
+      time: new Date(),
+      image: null
     }
   },
   computed: {
@@ -123,15 +130,35 @@ export default {
       if (!this.formIsValid) {
         return
       }
+      if (!this.image) {
+        return
+      }
       const meetupData = {
         title: this.title,
         description: this.description,
         location: this.location,
         imageUrl: this.imageUrl,
+        image: this.image,
         date: this.submittableDateTime
       }
       this.$store.dispatch('createMeetup', meetupData)
       this.$router.push('/meetups')
+    },
+    pickFile () {
+      this.$refs.dlgFileInput.click()
+    },
+    filePicked (event) {
+      const files = event.target.files
+      let filename = files[0].name
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('Please add a valid file!')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
     }
   }
 }
