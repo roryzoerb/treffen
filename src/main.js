@@ -27,5 +27,6 @@ new Vue({
       projectId: 'rrzsolutions-001',
       storageBucket: ''
     })
+    this.$store.dispatch('loadMeetups')
   }
 })
