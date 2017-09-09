@@ -1,5 +1,5 @@
 <template>
-  <v-dialog style='width: 350px' persistent v-model='editDialog'>
+  <v-dialog class='meetup-dialog' persistent v-model='editDialog'>
     <v-btn class='primary' slot='activator'>
       <!-- <v-icon left>edit</v-icon>Edit -->
       Edit
@@ -41,7 +41,7 @@
               flat
               class='blue--text darken-1'
               v-on:click='editDialog=false'>
-              Close
+              Cancel
             </v-btn>
             <v-btn
               flat
@@ -77,7 +77,7 @@ export default {
         title: this.editableTitle,
         description: this.editableDescription,
         modifier_id: this.$store.getters.user.id,
-        modified_date: new Date().toISOString()
+        modified_date: new Date()
 
       })
     }
@@ -87,7 +87,7 @@ export default {
 
 
 <style scoped>
-.meeting-dialog {
+.meetup-dialog {
     width: 350px;
 }
 </style>

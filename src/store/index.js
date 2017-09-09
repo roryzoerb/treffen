@@ -36,7 +36,7 @@ export const store = new Vuex.Store({
       state.loadedMeetups.push(payload)
     },
     updateMeetup (state, payload) {
-      const meetup = state.loadMeetups.find(meetup => {
+      const meetup = state.loadedMeetups.find(meetup => {
         return meetup.id === payload.id
       })
       if (payload.title) {
@@ -107,7 +107,7 @@ export const store = new Vuex.Store({
         creator_id: getters.user.id,
         created_date: new Date().toISOString(),
         modifier_id: getters.user.id,
-        modified_date: new Date().toISOString()
+        modified_date: new Date()
       }
       let key
       let imageUrl
@@ -160,8 +160,6 @@ export const store = new Vuex.Store({
       if (payload.modifier_id) {
         updateObject.modifier_id = payload.modifier_id
       }
-      // updateObject.modifier_id = this.getters.user.id
-      // updateObject.modified_date = new Date().toISOString()
 
       firebase.database().ref('meetups').child(payload.id).update(updateObject)
         .then(() => {

@@ -23,6 +23,10 @@
           </v-card-media>
           <v-card-text>
             <div class='info--text'>{{ meetup.date | dateTime }} - {{ meetup.location }}</div>
+            <div v-if='userIsCreator' class='my-buttons'>
+              <div><app-edit-date-dialog v-bind:meetup='meetup'></app-edit-date-dialog></div>
+              <div><app-edit-time-dialog v-bind:meetup='meetup'></app-edit-time-dialog></div>
+            </div>
             <div>{{ meetup.description }}</div>
             <div>Creator: {{ meetup.creator_id }}</div>
             <div>Created: {{ meetup.created_date | dateTime }}</div>
@@ -66,4 +70,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.my-buttons {
+  display:flex;
+  flex-direction:row;
+}
+</style>
 
