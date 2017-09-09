@@ -19,7 +19,7 @@
                   </div>
                 </v-card-title>
                 <div>
-                  <v-btn flat v-bind:to="'/meetups/' + meetup.id">
+                  <v-btn flat v-bind:to="'/meetup/' + meetup.id">
                     <v-icon left>arrow_forward</v-icon>
                     View Meetup
                   </v-btn>

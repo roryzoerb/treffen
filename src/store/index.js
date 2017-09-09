@@ -7,30 +7,22 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     loadedMeetups: [
-      // {
-      //   imageUrl: 'http://kids.nationalgeographic.com/content/dam/kids/photos/articles/History/M-Z/YELLOWSTONE%20VALLEY.adapt.945.1.jpg',
-      //   id: 'alsdfjkklsdfkj',
-      //   title: 'Meetup in Yellowstone',
-      //   description: 'In YNP!!!',
-      //   location: 'Yellowstone Naional Park, Montana USA',
-      //   date: new Date()
-      // },
-      // {
-      //   imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg',
-      //   id: 'otueorwqperp',
-      //   title: 'Meetup in Telluride',
-      //   description: 'In Colorado!!!',
-      //   location: 'Telluride, Colorado USA',
-      //   date: new Date()
-      // },
-      // {
-      //   imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg',
-      //   id: 'czxcmvzxcmfdghv',
-      //   title: 'Meetup in Banf',
-      //   description: 'In Banf!!!',
-      //   location: 'Banf, Canada',
-      //   date: new Date()
-      // }
+      {
+        imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg',
+        id: 'otueorwqperp',
+        title: 'Meetup in Telluride',
+        description: 'In Colorado!!!',
+        location: 'Telluride, Colorado USA',
+        date: new Date()
+      },
+      {
+        imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg',
+        id: 'czxcmvzxcmfdghv',
+        title: 'Meetup in Banf',
+        description: 'In Banf!!!',
+        location: 'Banf, Canada',
+        date: new Date()
+      }
     ],
     user: null,
     loading: false,
@@ -42,6 +34,26 @@ export const store = new Vuex.Store({
     },
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
+    },
+    updateMeetup (state, payload) {
+      const meetup = state.loadMeetups.find(meetup => {
+        return meetup.id === payload.id
+      })
+      if (payload.title) {
+        meetup.title = payload.title
+      }
+      if (payload.description) {
+        meetup.description = payload.description
+      }
+      if (payload.date) {
+        meetup.date = payload.date
+      }
+      if (payload.modifier_id) {
+        meetup.modifier_id = payload.modifier_id
+      }
+      if (payload.modified_date) {
+        meetup.modified_date = payload.modified_date
+      }
     },
     setUser (state, payload) {
       state.user = payload
@@ -81,9 +93,9 @@ export const store = new Vuex.Store({
           commit('setLoadedMeetups', meetups)
           commit('setLoading', false)
         })
-        .catch((error) => {
-          commit('setLoading', false)
+        .catch(error => {
           console.log(error)
+          commit('setLoading', false)
         })
     },
     createMeetup ({commit, getters}, payload) {
@@ -126,8 +138,39 @@ export const store = new Vuex.Store({
             id: key
           })
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
+        })
+    },
+    updateMeetup ({commit}, payload) {
+      commit('setLoading', true)
+      const updateObject = {}
+      if (payload.title) {
+        updateObject.title = payload.title
+      }
+      if (payload.description) {
+        updateObject.description = payload.description
+      }
+      if (payload.date) {
+        updateObject.date = payload.date
+      }
+      if (payload.modified_date) {
+        updateObject.modified_date = payload.modified_date
+      }
+      if (payload.modifier_id) {
+        updateObject.modifier_id = payload.modifier_id
+      }
+      // updateObject.modifier_id = this.getters.user.id
+      // updateObject.modified_date = new Date().toISOString()
+
+      firebase.database().ref('meetups').child(payload.id).update(updateObject)
+        .then(() => {
+          commit('setLoading', false)
+          commit('updateMeetup', payload)
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
         })
     },
     signUserUp ({commit}, payload) {
@@ -143,7 +186,7 @@ export const store = new Vuex.Store({
           commit('setUser', newUser)
         }
       )
-      .catch((error) => {
+      .catch(error => {
         commit('setLoading', false)
         commit('setError', error)
         console.log(error)
@@ -162,7 +205,7 @@ export const store = new Vuex.Store({
           commit('setUser', newUser)
         }
       )
-      .catch((error) => {
+      .catch(error => {
         commit('setLoading', false)
         commit('setError', error)
         console.log(error)

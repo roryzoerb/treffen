@@ -8,18 +8,18 @@
                 <v-btn router to='/meetup/new' large class='info'>Organize Meetup</v-btn>
             </v-flex>
         </v-layout>
-        <v-layout row>
+        <v-layout row v-if='loading'>
           <v-flex xs12 class='text-xs-center'>
             <v-progress-circular 
               indeterminate
               class='primary--text'
               v-bind:width='3'
-              v-bind:size='150'
-              v-if='loading'>Loading...
+              v-bind:size='150'>Loading...
+              <!-- v-if='loading'>Loading... -->
             </v-progress-circular>
           </v-flex>
         </v-layout>
-        <v-layout row wrap v-if='!loading'>
+        <v-layout row wrap v-else>
             <v-flex xs12>
                 <v-carousel style='cursor: pointer;'>
                     <v-carousel-item
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     onLoadMeetup (id) {
-      this.$router.push('/meetups/' + id)
+      this.$router.push('/meetup/' + id)
     }
   }
 }

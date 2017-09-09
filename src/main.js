@@ -6,12 +6,14 @@ import router from './router'
 import { store } from './store'
 import DateFilter from './filters/date'
 import AppAlert from './components/shared/AppAlert.vue'
+import EditMeetupDialog from './components/dialog/EditMeetupDialog.vue'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.filter('dateTime', DateFilter)
 Vue.component('app-alert', AppAlert)
+Vue.component('app-edit-meetup-dialog', EditMeetupDialog)
 
 /* eslint-disable no-new */
 new Vue({
