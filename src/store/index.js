@@ -6,24 +6,24 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    loadedMeetups: [
-      {
-        imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg',
-        id: 'otueorwqperp',
-        title: 'Meetup in Telluride',
-        description: 'In Colorado!!!',
-        location: 'Telluride, Colorado USA',
-        date: new Date()
-      },
-      {
-        imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg',
-        id: 'czxcmvzxcmfdghv',
-        title: 'Meetup in Banf',
-        description: 'In Banf!!!',
-        location: 'Banf, Canada',
-        date: new Date()
-      }
-    ],
+    loadedMeetups: [],
+    //   {
+    //     imageUrl: 'https://cdn.lumieretelluride.com/wp-content/uploads/2014/09/telluride-carousel-lumiere-hotel-1024x683.jpg',
+    //     id: 'otueorwqperp',
+    //     title: 'FAKE > Meetup in Telluride',
+    //     description: 'In Colorado!!!',
+    //     location: 'Telluride, Colorado USA',
+    //     date: new Date()
+    //   },
+    //   {
+    //     imageUrl: 'http://2.bp.blogspot.com/-7XS76XCSIPE/UvTLuMGP5eI/AAAAAAAAA_Q/QHpD7sh2U3A/s1600/resized_99265-banff-city_88-15338_t598.jpg',
+    //     id: 'czxcmvzxcmfdghv',
+    //     title: 'FAKE > Meetup in Banf',
+    //     description: 'In Banf!!!',
+    //     location: 'Banf, Canada',
+    //     date: new Date()
+    //   }
+    // ],
     user: null,
     loading: false,
     error: null
@@ -137,6 +137,7 @@ export const store = new Vuex.Store({
               modified_date: obj[key].modified_date
             })
           }
+          console.log(meetups)
           commit('setLoadedMeetups', meetups)
           commit('setLoading', false)
         })
@@ -250,6 +251,7 @@ export const store = new Vuex.Store({
             regKeys: {}
           }
           commit('setUser', newUser)
+          // commit('loadMeetups')
         }
       )
       .catch(error => {
@@ -264,6 +266,33 @@ export const store = new Vuex.Store({
         registeredMeetups: [],
         regKeys: {}
       })
+    },
+    fetchUserData ({commit, getters}) {
+      commit('setLoading', true)
+      // once - not a permanent listener
+      firebase.database().ref('/users/' + getters.user.id + '/registrations/').once('value')
+        .then(data => {
+          const registrations = data.val()
+          let registeredMeetups = []
+          let swapped = {}
+          for (let registration in registrations) {
+            registeredMeetups.push(registrations[registration])
+            swapped[registrations[registration]] = registration
+          }
+          // console.log(registeredMeetups)
+          // console.log(swapped)
+          const updatedUser = {
+            id: getters.user.id,
+            registeredMeetups: registeredMeetups,
+            regKeys: swapped
+          }
+          commit('setLoading', false)
+          commit('setUser', updatedUser)
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
+        })
     },
     clearError ({commit}) {
       commit('clearError')

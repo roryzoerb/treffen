@@ -40,7 +40,10 @@
             </template>
             <v-spacer></v-spacer>
             <!-- <v-btn class='primary'><v-icon left>fa-hand-pointer-o</v-icon>Register</v-btn> -->
-            <app-meetup-register-dialog v-bind:meetupId='meetup.id'></app-meetup-register-dialog>
+            <app-meetup-register-dialog
+              v-bind:meetupId='meetup.id'
+              v-if='userIsAuthenticated && !userIsCreator'>
+            </app-meetup-register-dialog>
           </v-card-actions>
         </v-card>
       </v-flex>

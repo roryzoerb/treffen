@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     userIsRegistered () {
-      console.log(this.$store.getters.user.id + ' > ' + this.meetupId)
+      // console.log(this.$store.getters.user.id + ' > ' + this.meetupId)
       return this.$store.getters.user.registeredMeetups.findIndex(meetupId => {
         return meetupId === this.meetupId
       }) >= 0
