@@ -1,5 +1,5 @@
 <template>
-  <v-dialog class='time-dialog' persistent v-model='editDialog'>
+  <v-dialog class='time-dialog' lazy v-model='editDialog'>
     <v-btn class='primary' slot='activator'>
       <!-- <v-icon left>edit</v-icon>Edit -->
       Edit Time

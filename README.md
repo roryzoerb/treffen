@@ -2,7 +2,7 @@
 
 > Meeting scheduling app built with Vue, Vuetify and Firebase
 
-Guided by [Academind Tutorials](https://www.youtube.com/watch?v=FXY1UyQfSFw&list=PL55RiY5tL51qxUbODJG9cgrsVd7ZHbPrt) by Max‏(@maxedapps)
+Guided by Max‏(@maxedapps) at [Academind Tutorials](https://www.youtube.com/watch?v=FXY1UyQfSFw&list=PL55RiY5tL51qxUbODJG9cgrsVd7ZHbPrt)
 
 ## Build Setup
 

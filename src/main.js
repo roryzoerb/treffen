@@ -9,6 +9,7 @@ import AppAlert from './components/shared/AppAlert.vue'
 import EditMeetupDialog from './components/dialog/EditMeetupDialog.vue'
 import EditDateDialog from './components/dialog/EditDateDialog.vue'
 import EditTimeDialog from './components/dialog/EditTimeDialog.vue'
+import MeetupRegisterDialog from './components/dialog/MeetupRegisterDialog.vue'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -18,6 +19,7 @@ Vue.component('app-alert', AppAlert)
 Vue.component('app-edit-meetup-dialog', EditMeetupDialog)
 Vue.component('app-edit-date-dialog', EditDateDialog)
 Vue.component('app-edit-time-dialog', EditTimeDialog)
+Vue.component('app-meetup-register-dialog', MeetupRegisterDialog)
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog class='meetup-dialog' persistent v-model='editDialog'>
+  <v-dialog class='meetup-dialog' lazy v-model='editDialog'>
     <v-btn class='primary' slot='activator'>
       <!-- <v-icon left>edit</v-icon>Edit -->
       Edit
