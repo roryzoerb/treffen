@@ -4781,9 +4781,10 @@ vue@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.2.tgz#a9855261f191c978cc0dc1150531b8d08149b58c"
 
-vuetify@^0.15.1:
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-0.15.2.tgz#f4978524ca85ada4cc1228fd40e1239f185ae7f2"
+vuetify@^0.17.0:
+  version "0.17.7"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-0.17.7.tgz#068c8210473643d45166ef9c5f6eb0ecf26bb5a5"
+  integrity sha512-Brk8dOeR/vkG4By5r2JXtS1jJojP3sFOtyTXtflH7aVPF+14Z0xBNO3nM4QuPgWofHi3pw/9maJZEbDVND7iNQ==
 
 vuex@^2.4.0:
   version "2.4.0"
